@@ -26,3 +26,6 @@
 """
 
 ip = "192.168.3.1"
+ip_hex=ip.split('.')
+print(f"{ip_hex[0]} {ip_hex[1]} {ip_hex[2]} {ip_hex[3]}")
+print(f"{bin(int(ip_hex[0]))} {ip_hex[1]} {ip_hex[2]} {ip_hex[3]}")
