@@ -30,3 +30,14 @@ Out[1]: '11111111111111111111111111110000'
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+ip=input('Введите IP в формате 10.0.0.0/24: ')
+
+print('Network:')
+ip_split=ip.split('/')[0].split('.')
+print(f"{ip_split[0]}  {ip_split[1]}  {ip_split[2]}  {ip_split[3]}")
+mask=''.join(ip.split('/')[1].split('.'))
+print('Mask:')
+print(f"/{mask}")
+dif_mask=32 - int(mask)
+bin_mask="1" * int(mask) + "0" * int(dif_mask)
+print(f"{bin_mask[0:7]}  {bin_mask[8:15]}  {bin_mask[16:23]}  {bin_mask[24:32]}")

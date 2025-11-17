@@ -44,3 +44,9 @@ london_co = {
         "routing": True,
     },
 }
+
+import sys
+
+device=input('Введите имя устройста:')
+param=input('Введите параметр:')
+print(london_co[device][param])
