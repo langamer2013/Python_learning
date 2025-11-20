@@ -69,16 +69,24 @@ access = {"0/12": "10", "0/14": "11", "0/16": "17", "0/17": "150"}
 trunk = {
     "0/1": ["add", "10", "20"],
     "0/2": ["only", "11", "30"],
-    "0/4": ["del", "17"],
+    "0/4": ["remove", "17"],
     "0/5": ["add", "10", "21"],
     "0/7": ["only", "30"],
 }
 
-# for intf, vlan in access.items():
-#     print("interface FastEthernet" + intf)
-#     for command in access_template:
-#         if command.endswith("access vlan"):
-#             print(f" {command} {vlan}")
-#         else:
-#             print(f" {command}")
+#for intf, vlan in access.items():
+#    print("interface FastEthernet" + intf)
+#    for command in access_template:
+#        if command.endswith("access vlan"):
+#            print(f" {command} {vlan}")
+#        else:
+#            print(f" {command}")
 
+for intf, vlan in trunk.items():
+    print("interface FastEthernet" + intf)
+    print(" switchport trunk encapsulation dot1q")
+    print(" switchport mode trunk")
+    if vlan[0] == "only":
+        print(" switchport trunk allowed vlan " + ','.join(vlan[1:]))
+    else:
+        print(" switchport trunk allowed vlan " + vlan[0] + " " + ','.join(vlan[1:]))

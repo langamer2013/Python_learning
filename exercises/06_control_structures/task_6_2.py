@@ -12,3 +12,15 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+ip = input ("Введите IP: ")
+first_octet=int(ip.split(".")[0])
+if first_octet <= 223 and first_octet > 0:
+    print("unicast")
+elif first_octet <= 239 and first_octet > 224:
+    print("multicast")
+elif ip == "255.255.255.255":
+    print("local broadcast")
+elif ip == "0.0.0.0":
+    print("unassigned")
+else:
+    print("unused")
