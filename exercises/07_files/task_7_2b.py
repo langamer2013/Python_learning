@@ -17,3 +17,17 @@
 """
 
 ignore = ["duplex", "alias", "configuration"]
+
+import sys
+
+commands_to_write = []
+
+filename = "config_sw1.txt"
+with open(filename, 'r') as file:
+    for line in file:
+        if not line.startswith('!') and ignore[0] not in line and ignore[1] not in line and ignore[2] not in line:
+            commands_to_write.append(line.rstrip())
+
+with open('new_file', 'w') as dst:
+    dst.write('\n'.join(commands_to_write))
+

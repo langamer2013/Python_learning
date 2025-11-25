@@ -20,3 +20,9 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+
+with open('CAM_table.txt', 'r') as file:
+    for line in file:
+        if 'DYNAMIC' in line:
+            line=line.rstrip().split()
+            print(line[0], line[1], line[3])

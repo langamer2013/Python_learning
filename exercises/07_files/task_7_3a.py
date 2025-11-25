@@ -40,3 +40,15 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+macs=[]
+with open('CAM_table.txt', 'r') as file:
+    for line in file:
+        if 'DYNAMIC' in line:
+            line=line.rstrip().split()
+            macs.append(line)
+
+for i in macs:
+    i[0]=int(i[0])
+
+for i in sorted(macs):
+    print(i[0], i[1], i[3])
