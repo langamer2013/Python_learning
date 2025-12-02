@@ -34,7 +34,7 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
-
+import pprint
 
 trunk_mode_template = [
     "switchport mode trunk",
@@ -47,3 +47,20 @@ trunk_config = {
     "FastEthernet0/2": [11, 30],
     "FastEthernet0/4": [17],
 }
+
+def generate_trunk_config(intf_vlan_mapping, trunk_template):
+    config = {}
+    for interface, vlan in intf_vlan_mapping.items():
+        #config[interface]=''
+        commands_in_int = []
+        for command in trunk_template:
+            if 'allowed' in command:
+                commands_in_int.append(command + " " + (','.join(str(x) for x in vlan)))
+            else:
+                commands_in_int.append(command)
+        config[interface] = commands_in_int
+    return config
+
+pprint.pprint(generate_trunk_config(trunk_config, trunk_mode_template))
+
+

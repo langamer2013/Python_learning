@@ -30,5 +30,5 @@ for i in macs:
 
 for i in sorted(macs):
     if vlan == str(i[0]):
-        print(i[0], i[1], i[3])
+        print(f"{i[0]:{5}} {i[1]:{30}} {i[3]:20}")
 
