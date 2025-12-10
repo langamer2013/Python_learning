@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from pprint import pprint
 """
 Задание 9.3
 
@@ -23,3 +24,26 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+
+
+#print(config)
+
+def get_int_vlan_map(config_filename):
+    with open(config_filename, 'r') as file:
+        trunk = {}
+        access = {}
+        for line in file:
+            if "FastEthernet" in line:
+                portname = line.split()[1].strip()
+            if "vlan" in line and "trunk" in line:
+                trunk[portname] = line.split()[-1].strip().split(',')
+                portname = ''
+            elif "vlan" in line and "trunk" not in line:
+                access[portname] = int(line.split()[-1].strip())
+            elif "access" in line and "vlan" not in line:
+                access[portname] = 1    
+        return  access, trunk
+        
+
+pprint(get_int_vlan_map('config_sw2.txt'))
