@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from pprint import pprint
+
 """
 Задание 11.1
 
@@ -43,8 +45,21 @@ def parse_cdp_neighbors(command_output):
     и с файлами и с выводом с оборудования.
     Плюс учимся работать с таким выводом.
     """
+    output = command_output.split('\n')
+    topology = {}
+    for line in output:
+        if 'show cdp neighbors' in line:
+            r_name = line.split('>')[0].strip()
+        if 'Eth' in line:
+            neigh, _, local_port, *_, neig_port = line.split()
+            topology[(r_name, f'Eth{local_port}')] = (neigh, f'Eth{neig_port}')
+    return topology 
+
+
 
 
 if __name__ == "__main__":
     with open("sh_cdp_n_sw1.txt") as f:
         print(parse_cdp_neighbors(f.read()))
+
+
