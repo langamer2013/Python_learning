@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import subprocess
+from pprint import pprint
 """
 Задание 12.1
 
@@ -17,3 +19,23 @@ IP-адрес считается доступным, если выполнени
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+ip_list = [
+    '8.8.8.8',
+    '8.8.4.4',
+    '11.12.13.14'
+]
+
+def ping_ip_addresses(list_addr):
+    ip_reach = []
+    ip_unreach = []
+    for ip in list_addr:
+        command = f"ping {ip} -n 3"
+        result = subprocess.run(command, stdout=subprocess.DEVNULL)
+        if result.returncode == 0:
+            ip_reach.append(ip)
+        else:
+            ip_unreach.append(ip)
+    return ip_reach, ip_unreach
+
+pprint(ping_ip_addresses(ip_list))
+

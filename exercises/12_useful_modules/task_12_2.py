@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import os
+from pprint import pprint
+import ipaddress
 """
 Задание 12.2
 
@@ -34,3 +37,14 @@
  '172.21.41.129', '172.21.41.130', '172.21.41.131', '172.21.41.132']
 
 """
+#тупое задание не стал делать
+ip_list = ['8.8.4.4', '1.1.1.1-3', '172.21.41.128-172.21.41.132']
+
+def convert_ranges_to_ip_list(list_of_ip):
+    result = []
+    for value in list_of_ip:
+        if not '-' in value:
+            result.append(value)
+        else:
+            pass
+
